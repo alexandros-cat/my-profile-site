@@ -5,9 +5,10 @@ services:
       dockerfile: Dockerfile
     working_dir: /app
     ports:
-      - 8080:8080
+      - 8080:8080 
       - 5050:5050
-    tty: true
+    # tty: true
+    # command: ./gradlew bootRun  # 👈 この行が必ず必要です！
     volumes:
       - ./:/app
     depends_on:
