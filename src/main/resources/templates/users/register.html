@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sign in</title>
+    <!-- 自作のCSSファイルのみでデザインする場合 -->
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">My Portfolio</h1>
+      <button type="button" class="header_btn">ログイン</button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-container">
+    <div class="form-wrapper">
+      <h2 class="main-title">新規登録</h2>
+      
+      <form th:action="@{/users/register}" method="post" th:object="${user}" class="signup-form">
+        
+        <!-- 氏名 -->
+        <div class="form-group">
+          <label for="title">氏名</label>
+          <input type="text" id="title" th:field="*{name}" />
+          <p th:errors="*{name}" class="error-message"></p>
+        </div>
+
+        <!-- メールアドレス -->
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" th:field="*{email}" />
+          <p th:errors="*{email}" class="error-message"></p>
+        </div>
+
+        <!-- パスワード -->
+        <div class="form-group">
+          <label for="password">パスワード</label>
+          <input type="password" id="password" th:field="*{password}" />
+          <p th:errors="*{password}" class="error-message"></p>
+        </div>
+
+        <!-- 登録ボタン -->
+        <button type="submit" class="submit-btn">登録する</button>
+      </form>
+    </div>  
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <h5 class="footer-title">portfolio site</h5>
+  </footer>   
+</body>
+</html>

@@ -1,14 +1,12 @@
 package com.spring.springbootapplication;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 
-@SpringBootApplication(exclude = {
-    DataSourceAutoConfiguration.class,
-    FlywayAutoConfiguration.class
-})
+
+@SpringBootApplication
+@MapperScan("com.spring.springbootapplication.dao")
 public class SpringbootApplication {
 
 	public static void main(String[] args) {
