@@ -25,15 +25,17 @@ public class UserRegisterRequest implements Serializable {
      * メールアドレス
      */
     @NotEmpty(message = "メールアドレスは必ず入力してください")
-    @Email(message = "メールアドレスが正しい形式ではありません")
-    @Size(max = 255, message = "メールアドレスは255文字以内で入力してください")
+    @Pattern(
+        regexp = "^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}$", 
+        message = "メールアドレスが正しい形式ではありません"
+    )
     private String email;
 
     /**
      * パスワード
      */
     @NotEmpty(message = "パスワードは必ず入力してください")
-    @Size(min = 8, max = 255, message = "パスワードは8文字以上で入力してください")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$", message = "パスワードは半角英数字をそれぞれ1文字以上含めてください")
+    // @Size(min = 8, max = 255, message = "パスワードは8文字以上で入力してください")
+    @Pattern(regexp = "^[A-Za-z0-9]{8,}$", message = "英数字8文字以上で入力してください")
     private String password;
 }

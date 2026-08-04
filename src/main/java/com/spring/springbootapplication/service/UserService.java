@@ -7,7 +7,7 @@ import com.spring.springbootapplication.dto.UserRegisterRequest;
 import com.spring.springbootapplication.entity.User;
 import com.spring.springbootapplication.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder; // ★追加
+import org.springframework.security.crypto.password.PasswordEncoder; // ★インポート
 
 
 /**
@@ -22,10 +22,11 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    // ★パスワードエンコーダーを追加
+    // ★追加：PasswordEncoder を注入するフィールド
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+   
     /**
      * ユーザ情報登録
      * @param userRegisterRequest リクエストデータ
@@ -36,7 +37,7 @@ public class UserService {
         user.setName(userRegisterRequest.getName());
         user.setEmail(userRegisterRequest.getEmail());
         
-        // ★ここでパスワードをハッシュ化してからセットする
+        // パスワードをハッシュ化してからセットする
         String hashedPassword = passwordEncoder.encode(userRegisterRequest.getPassword());
         user.setPassword(hashedPassword);
         
