@@ -1,0 +1,138 @@
+/* 全体のリセット・基本設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ヘッダー */
+.header {
+  background-color: #1B5678;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem; /* 必要に応じて左右の余白を調整 */
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.header_btn {
+  background-color: white;
+  color: black;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.header_btn:hover {
+  background-color: #21618c;
+}
+
+/* メインコンテンツ */
+.main-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.form-wrapper {
+  padding: 2.5rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.main-title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* フォーム要素 */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 0; /* 上下のみ、左右のパディングを調整する場合 */
+  border: none;               /* 一旦すべての枠線を消す */
+  border-bottom: 1px solid #333; /* 下線の色と太さを指定 */
+  border-radius: 0;           /* 下線の場合は角丸を解除 */
+  font-size: 1rem;
+  background-color: transparent; /* 背景を透明にする場合 */
+  transition: border-color 0.2s;
+}
+
+
+/* エラーメッセージ */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* 登録ボタン */
+.submit-btn {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  background-color:#1B5678;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+
+}
+
+.submit-btn:hover {
+  background-color: #21618c;
+}
+
+/* フッター */
+.footer {
+  background-color: #1B5678;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1; /* line-height: 100% と同等 */
+  letter-spacing: 0;
+}

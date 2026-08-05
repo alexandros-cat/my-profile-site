@@ -1,0 +1,10 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL ,
+    password VARCHAR(255) NOT NULL,
+    profile VARCHAR(200),
+    avatar_image VARCHAR(255),
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
