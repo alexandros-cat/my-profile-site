@@ -1,6 +1,7 @@
 package com.spring.springbootapplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,9 +42,9 @@ public class UsersController {
             // ここで重複している場合に UserService から例外が投げられます
             userService.save(userRegisterRequest);
             
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | DataIntegrityViolationException e) {
             // 重複エラーをキャッチしてメールアドレス欄に紐付け、入力画面に戻す
-            result.rejectValue("email", "error.email.duplicate", e.getMessage());
+            result.rejectValue("email", "error.email.duplicate", "このメールアドレスはすでに使用されています。");
             return "users/register";
         }
         
