@@ -42,9 +42,12 @@ public class UsersController {
             // ここで重複している場合に UserService から例外が投げられます
             userService.save(userRegisterRequest);
             
-        } catch (IllegalArgumentException | DataIntegrityViolationException e) {
-            // 重複エラーをキャッチしてメールアドレス欄に紐付け、入力画面に戻す
-            result.rejectValue("email", "error.email.duplicate", "このメールアドレスはすでに使用されています。");
+        } catch (Exception e) {
+            // 例外のクラス名とメッセージをそのままコンソールに完全に出力する
+            e.printStackTrace();
+            
+            // どんなエラーが起きたかをそのまま画面のエラーメッセージに出してみる
+            result.rejectValue("email", "error.email.duplicate", "起きたエラー: " + e.getClass().getName() + " / " + e.getMessage());
             return "users/register";
         }
         
