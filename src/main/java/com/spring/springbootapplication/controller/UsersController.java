@@ -43,11 +43,8 @@ public class UsersController {
             userService.save(userRegisterRequest);
             
         } catch (Exception e) {
-            // 例外のクラス名とメッセージをそのままコンソールに完全に出力する
-            e.printStackTrace();
-            
-            // どんなエラーが起きたかをそのまま画面のエラーメッセージに出してみる
-            result.rejectValue("email", "error.email.duplicate", "起きたエラー: " + e.getClass().getName() + " / " + e.getMessage());
+            // ★ ここを「メールアドレスがすでに登録されています」に変更する
+            result.rejectValue("email", "error.email.duplicate", "メールアドレスがすでに登録されています");
             return "users/register";
         }
         
