@@ -15,9 +15,12 @@ body {
 
 /* ヘッダー */
 .header {
+  width: 1440;
+  height: 120;
+  justify-content: space-between;
+  padding: 40px;
+  opacity: 1;
   background-color: #1B5678;
-  color: #fff;
-  padding: 1rem 2rem;
 }
 
 .header-inner {
@@ -29,21 +32,35 @@ body {
 }
 
 .header-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.0; /* 100% */
+  letter-spacing: 0em;
+  color: #fff;
 }
 
 .header_btn {
-  background-color: white;
-  color: black;
-  padding: 0.4rem 1rem;
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 18px;
+  text-box-trim: none;/* 上下の行間余白を維持 */
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 0.75);
+  width: 152;
+  height: 53;
   border-radius: 4px;
-  cursor: pointer;
-  border: none;
+  padding-top: 16px;
+  padding-right: 40px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  opacity: 1;
 }
 
 .header_btn:hover {
-  background-color: #21618c;
+  background-color: #d3d3d3
 }
 
 /* メインコンテンツ */
@@ -56,29 +73,40 @@ body {
 }
 
 .form-wrapper {
-  padding: 2.5rem;
-  border-radius: 8px;
   width: 100%;
   max-width: 420px;
 }
 
 .main-title {
-  font-size: 1.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 36px;
+  leading-trim: NONE;
+  line-height: 133%;
+  letter-spacing: 0px;
   color: #2c3e50;
+  margin-bottom: 76px;
+  width: 100%;
+  text-align: center;
+  margin-left: auto;  /* ← 追加：左側の余白を自動にして中央へ */
+  margin-right: auto; /* ← 追加：右側の余白を自動にして中央へ */
 }
 
 /* フォーム要素 */
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 48px;
+}
+
+/* 1番目のフォームグループ（氏名）の下の余白を 3px にする */
+.form-group:first-child label {
+  margin-bottom: 3px;
 }
 
 .form-group label {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
   color: #555;
 }
 
@@ -103,17 +131,25 @@ body {
 
 /* 登録ボタン */
 .submit-btn {
+  background-color:rgba(27, 86, 120, 1);
+  width: 232;
+  height: 53;
+  padding-top: 16px;
+  padding-right: 80px;
+  padding-bottom: 16px;
+  padding-left: 80px;
+  opacity: 1;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 18px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color:rgba(255, 255, 255, 1);
   display: block;
-  width: 200px;
   margin: 0 auto;
-  background-color:#1B5678;
-  color: #fff;
-  border: none;
-  padding: 0.75rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 0.5rem;
-
 }
 
 .submit-btn:hover {
@@ -122,17 +158,25 @@ body {
 
 /* フッター */
 .footer {
+  width: 100%;
   background-color: #1B5678;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
+  flex-shrink: 0; /* 高さが縮まらないようにする */
+}
+
+.footer-inner {
+  width: 100%;
+  max-width: 1440px;
+  height: 40px; /* 高さをコンパクトに調整 */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* 「portfolio」のテキストを中央に */
+  align-items: center;
+  padding: 0 40px;
 }
 
 .footer-title {
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 18px;
-  line-height: 1; /* line-height: 100% と同等 */
-  letter-spacing: 0;
+  color: rgba(255, 255, 255, 1);
 }

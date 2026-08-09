@@ -34,10 +34,18 @@ public class UsersController {
     @PostMapping("/users/register")
     public String create(@ModelAttribute("user") @Validated UserRegisterRequest userRegisterRequest, BindingResult result) {
         if (result.hasErrors()) {
-            return "users/register"; // "register" から変更
+            return "users/register";
         }
         
-        userService.save(userRegisterRequest);
+        try {
+            // ここで重複している場合に UserService から例外が投げられます
+            userService.save(userRegisterRequest);
+            
+        } catch (IllegalArgumentException e) {
+            // 重複エラーをキャッチしてメールアドレス欄に紐付け、入力画面に戻す
+            result.rejectValue("email", "error.email.duplicate", e.getMessage());
+            return "users/register";
+        }
         
         // 登録成功後は /top へ転送
         return "redirect:/top";
