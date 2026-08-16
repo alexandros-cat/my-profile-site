@@ -4,52 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
-    /**
- * ユーザー情報 Entity
- */
 @Data
 public class User implements Serializable {
 
-    /**
-     * ID
-     */
+    // 主キー
     private Long id;
 
-    /**
-     * 名前
-     */
-    private String name;
-
-    /**
-     * メールアドレス
-     */
+    // --- ログイン用（Spring Security必須） ---
     private String email;
-
-    /**
-     * パスワード
-     */
     private String password;
+    private boolean enabled = true;
 
-    /**
-     * 自己紹介
-     */
+    // --- 新規登録・プロフィール用 ---
+    private String name;
     private String profile;
-
-    /**
-     * アバター画像
-     */
     private String avatar_image;
-
-    /**
-     * 登録日時
-     */
     private Date createDate;
-
-    /**
-     * 更新日時
-     */
     private Date updateDate;
-
-}
+    // ----------------------------
     
-
+}

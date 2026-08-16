@@ -26,4 +26,14 @@ public interface UserMapper {
     @Select("SELECT * FROM users WHERE email = #{email}")
     Optional<User> findByEmail(@Param("email") String email);
 
-}
+    /**
+     * PWでユーザーを検索
+     * @param password パスワード
+     * @return ユーザー情報（存在しない場合はOptional.empty）
+     */
+    @Select("SELECT * FROM users WHERE password = #{password}")
+    Optional<User> findByPassword(@Param("password") String password);
+
+    
+}   
+

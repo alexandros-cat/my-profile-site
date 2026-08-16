@@ -2,34 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>sign in</title>
+    <title>login</title>
     <!-- 自作のCSSファイルのみでデザインする場合 -->
     <link rel="stylesheet" href="/css/style.css" />
 </head>
-<body>
+<body class="login-page">
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-inner">
       <h1 class="header-title">My Portfolio</h1>
-      <!-- <button type="button" class="header_btn">ログイン</button> -->
-      <button type="button" class="header_btn" onclick="location.href='/login'">ログイン</button>
     </div>
   </header>
 
   <!-- メインコンテンツ -->
   <main class="main-container">
     <div class="form-wrapper">
-      <h2 class="main-title">新規登録</h2>
-      
-      <form th:action="@{/users/register}" method="post" th:object="${user}" class="signup-form">
+      <h2 class="main-title">ログイン</h2>
+      <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
+      <form th:action="@{/login}" method="post" th:object="${login}" class="signup-form">  
         
-        <!-- 氏名 -->
-        <div class="form-group">
-          <label for="title">氏名</label>
-          <input type="text" id="title" th:field="*{name}" />
-          <p th:errors="*{name}" class="error-message"></p>
-        </div>
-
         <!-- メールアドレス -->
         <div class="form-group">
           <label for="email">メールアドレス</label>
@@ -44,9 +35,11 @@
           <p th:errors="*{password}" class="error-message"></p>
         </div>
 
-        <!-- 登録ボタン -->
-        <button type="submit" class="submit-btn">登録する</button>
-      </form>
+        <!-- ログインボタン -->
+        <button type="submit" class="submit-btn">ログインする</button>
+      </form>  
+        <!-- 登録ボタン --> 
+      <button type="button" class="submit-btn" onclick="location.href='/users/register'">新規登録する</button>
     </div>  
   </main>
 
