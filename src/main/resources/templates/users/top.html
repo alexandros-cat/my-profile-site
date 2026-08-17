@@ -2,12 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>トップページ</title>
+    <title>top page</title>
+    <!-- 自作のCSSファイルのみでデザインする場合 -->
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
-<body>
-    <h1>トップページへようこそ！</h1>
-    <p>登録が正常に完了しました。</p>
-    
-    <a th:href="@{/users/register}">新規登録画面に戻る</a>
+<body class="top-page">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">My Portfolio</h1>
+      <!-- <button type="button" class="header_btn">ログイン</button> -->
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="header_btn">ログアウト</button>
+      </form>    
+    </div>
+  </header>
+
+    <!-- メインコンテンツ -->
+  <main class="main-container">
+    <div class="form-wrapper">
+      <h2 class="main-title">トップページへようこそ！</h2>
+     </div>  
+  </main> 
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <h5 class="footer-title">portfolio site</h5>
+    </div>
+  </footer>
 </body>
 </html>

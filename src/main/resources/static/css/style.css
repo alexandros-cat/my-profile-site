@@ -81,6 +81,16 @@ body {
   padding: 2rem 1rem;
 }
 
+  /* 幅の制限をなくす */
+.top-page .form-wrapper{
+ max-width: none;
+}
+
+  /* 改行しない */
+.top-page .main-title{
+ white-space:no-wrap;
+}
+
 .form-wrapper {
   width: 100%;
   max-width: 420px;
@@ -100,6 +110,8 @@ body {
   margin-left: auto;  /* ← 追加：左側の余白を自動にして中央へ */
   margin-right: auto; /* ← 追加：右側の余白を自動にして中央へ */
 }
+
+
 
 /* フォーム要素 */
 .form-group {
