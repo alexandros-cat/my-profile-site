@@ -81,9 +81,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
 }
 
+.main-wrapper {
+  margin-left: 193px;
+  margin-right: 166px;
+}
   /* 幅の制限をなくす */
 .top-page .form-wrapper{
  max-width: none;
@@ -100,7 +103,7 @@ body {
 }
 
 .main-title {
-  font-family: Roboto;
+  font-family: 'Roboto',arial,sans-serif;
   font-weight: 400;
   font-size: 36px;
   leading-trim: NONE;
@@ -114,7 +117,97 @@ body {
   margin-right: auto; /* ← 追加：右側の余白を自動にして中央へ */
 }
 
+.profile-section {
+  display: flex;
+  flex-direction: row;
+  margin-left:47px;
+  margin-right:74px;
+}
 
+.profile-user {
+  width: 360px; /* アイコンと同じ幅にして基準を作る */
+  display: flex;
+  flex-direction: column; /* 要素を縦方向に並べる */
+  align-items: center;    /* 左右の中心に揃える */
+}
+
+.profile-icon {
+  border: none;
+  border-radius: 50%;
+  width: 360px;
+  height: 360px;
+  opacity: 1px;
+  background-color: #cccccc;
+}
+
+.profile-name-box {
+  margin-top: 10px;
+}
+
+.profile-name-text {
+  font-family: 'Roboto',arial,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.profile-about {
+  width: 520px;
+  height: 256px;
+  margin-left:80px;
+  opacity: 1; 
+}
+
+.profile-title {
+  width: 240px;
+  height: 58px;
+  margin-top:52px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  padding-bottom: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 36px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.profile-text {
+  margin-top:32px;
+  width: 520px;
+  height: 81px;
+  top: 90px;
+  gap: 16px;
+  angle: 0 deg;
+  opacity: 1;
+}
+
+.profile-btn {
+  margin-top:32px;
+  background-color:rgba(27, 86, 120, 1);
+  width: 242px;
+  height: 53px;
+  padding-top: 16px;
+  padding-right: 40px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  opacity: 1;
+  border-radius: 4px;
+  font-family: 'Roboto',arial,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color:rgba(255, 255, 255, 1);
+  /* --- 文字を改行させずに1行で表示する設定 --- */
+  white-space: nowrap; 
+}
 
 /* フォーム要素 */
 .form-group {

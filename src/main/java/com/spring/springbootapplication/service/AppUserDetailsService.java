@@ -1,15 +1,13 @@
 package com.spring.springbootapplication.service;
 
-import com.spring.springbootapplication.entity.User;
-import com.spring.springbootapplication.dao.UserMapper;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.spring.springbootapplication.dao.UserMapper;
+import com.spring.springbootapplication.entity.LoginUser;
+import com.spring.springbootapplication.entity.User;
 
 // 2. 認証機能 Serviceクラス
 @Service
@@ -28,18 +26,10 @@ public class AppUserDetailsService implements UserDetailsService {
         User user = userMapper.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-        List<GrantedAuthority> authorities = List.of(authority);
+        // GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+        // List<GrantedAuthority> authorities = List.of(authority);
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                user.isEnabled(),
-                true,
-                true,
-                true,
-                authorities
-        );
+        return new LoginUser(user);
     }
 }
 

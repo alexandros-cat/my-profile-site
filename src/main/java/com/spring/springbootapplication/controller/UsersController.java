@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import com.spring.springbootapplication.dto.UserRegisterRequest;
 import com.spring.springbootapplication.service.UserService;
 
@@ -51,10 +52,10 @@ public class UsersController {
         return "redirect:/top";
     }
     
-    @GetMapping("/top")
-    public String top() {
-        // templates/top.html を表示する場合は "top"
-        // templates/users/top.html を表示する場合は "users/top" にしてください
-        return "users/top";
-    }
+    // @GetMapping("/top")
+    // public String top() {
+    //     // templates/top.html を表示する場合は "top"
+    //     // templates/users/top.html を表示する場合は "users/top" にしてください
+    //     return "users/top";
+    // }
 }

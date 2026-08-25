@@ -18,14 +18,45 @@
     </div>
   </header>
 
-    <!-- メインコンテンツ -->
+  <!-- メインコンテンツ -->
   <main class="main-container">
-    <div class="form-wrapper">
-      <h2 class="main-title">トップページへようこそ！</h2>
-     </div>  
-  </main> 
+    <div class="main-wrapper">
+      
+      <!-- プロフィールセクション -->
+      <section class="profile-section">
+        <!-- プロフィールセクション -->
+        <div class="profile-user">
+          <div class="profile-icon">
+          <!-- <img src="" alt="プロフィール画像"> -->
+          </div>
+          <div class="profile-name-box">
+              <!-- <span class="profile-name-text">アカデミー花子</span> -->
+            <!-- <p>ユーザ名:<span class="profile-name-text" th:text="${#authentication.principal.username}">ゲスト</span></p> -->
+            <span th:text="${user.name}">ユーザー名</span>
+          </div>    
+        </div>
+         <!-- 自己紹介セクション -->
+        <div class="profile-about">
+          <h2 class="profile-title">自己紹介</h2>
+          <p class="profile-text">自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。<Br>
+             自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。<Br>
+             自分の自己紹介文章が入ります。自己紹介を編集する</p>
+          <!-- <form th:action="#" method="post" class="signup-form"> -->
+            <button type="submit" class="profile-btn">自己紹介を編集する</button>
+          <!-- </form> -->
+        </div>
+      </section>
+
+      <!-- チャートセクション -->
+      <section class="chart-section">
+        <!-- ここにチャートが入ります -->
+      </section>
+
+    </div>  
+  </main>
+
   <!-- フッター -->
-  <footer class="footer">
+  <footer class="footer">   
     <div class="footer-inner">
       <h5 class="footer-title">portfolio site</h5>
     </div>
