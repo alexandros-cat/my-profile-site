@@ -20,39 +20,33 @@
 
   <!-- メインコンテンツ -->
   <main class="main-container">
-    <div class="main-wrapper">
-      
+    <div class="form-wrapper ">
       <!-- プロフィールセクション -->
       <section class="profile-section">
         <!-- プロフィールセクション -->
         <div class="profile-user">
           <div class="profile-icon">
-          <!-- <img src="" alt="プロフィール画像"> -->
+            <img th:if="${user.avatarImage != null and user.avatarImage != ''}" th:src="@{${user.avatarImage}}" />
           </div>
           <div class="profile-name-box">
-              <!-- <span class="profile-name-text">アカデミー花子</span> -->
-            <!-- <p>ユーザ名:<span class="profile-name-text" th:text="${#authentication.principal.username}">ゲスト</span></p> -->
+             
             <span th:text="${user.name}">ユーザー名</span>
           </div>    
         </div>
          <!-- 自己紹介セクション -->
         <div class="profile-about">
           <h2 class="profile-title">自己紹介</h2>
-          <p class="profile-text">自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。<Br>
-             自分の自己紹介文章が入ります。自分の自己紹介文章が入ります。<Br>
-             自分の自己紹介文章が入ります。自己紹介を編集する</p>
-          <!-- <form th:action="#" method="post" class="signup-form"> -->
-            <button type="submit" class="profile-btn">自己紹介を編集する</button>
+          <p class="profile-text" th:text="${user.profile}"></p>
+            <!-- <button type="button" class="profile-btn" onclick="location.href='/users/edit'">自己紹介を編集する</button> -->
+            <button type="button" class="profile-btn" th:onclick="|location.href='@{/users/edit(id=${user.id})}'|">自己紹介を編集する</button>
           <!-- </form> -->
         </div>
       </section>
-
       <!-- チャートセクション -->
       <section class="chart-section">
         <!-- ここにチャートが入ります -->
       </section>
-
-    </div>  
+    </div>    
   </main>
 
   <!-- フッター -->

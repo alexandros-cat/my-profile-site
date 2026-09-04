@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profile-edit</title>
+    <!-- 自作のCSSファイルのみでデザインする場合 -->
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="edit-page">
+
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">My Portfolio</h1>
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="header_btn">ログアウト</button>
+      </form>    
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-container">
+
+    <div class="profile-editor">
+      <div class="profile-editor_header">
+        <h2 class="main-title">自己紹介を編集する</h2>
+      </div>
+      
+      <!-- ★修正1: enctypeを追加し、URLパラメータを削除 -->
+      <form th:action="@{/users/edit}" method="post" th:object="${profileForm}" enctype="multipart/form-data" class="profile-editor_form">  
+        <!-- userIdを隠しフィールドで送信 -->
+        <input type="hidden" th:field="*{userId}" />
+        
+        <!-- 自己紹介文 -->
+        <div class="profile-produce_form">
+          <label for="profile">自己紹介文</label>
+          <textarea id="profile" th:field="*{profile}" class="profile-textarea"></textarea><br>
+           <p th:errors="*{profile}" class="error-message"></p>
+        </div>
+
+       <!-- アバター画像 -->
+        <div class="avatar-form">
+          <label for="avatarFile">アバター画像</label>
+          <label for="avatarFile" class="avatar-file-btn">
+            画像ファイルを添付する
+          </label>
+          <!-- ★修正3: ファイル受取用の avatarFile に変更 -->
+          <input type="file" id="avatarFile" th:field="*{avatarFile}" style="display: none;" />
+          <span id="file-name" style="margin-left: 10px; font-size: 0.9rem;">ファイルが選択されていません</span>
+          <p th:errors="*{avatarFile}" class="error-message"></p>
+        </div>
+
+        <!-- 自己紹介確定（送信）ボタン --> 
+        <button type="submit" class="profile-confirm-btn">自己紹介を確定する</button>
+      </form>
+    </div>  
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <h5 class="footer-title">portfolio site</h5>
+    </div>
+  </footer>  
+  
+  <script>
+  document.getElementById('avatarFile').addEventListener('change', function(e) {
+    const fileName = e.target.files.length > 0 ? e.target.files[0].name : 'ファイルが選択されていません';
+    document.getElementById('file-name').textContent = fileName;
+  });
+</script>
+
+</body>
+</html>
