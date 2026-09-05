@@ -77,6 +77,7 @@ body {
 
 /* メインコンテンツ */
 .main-container {
+  width: 100%;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -84,12 +85,16 @@ body {
 }
 
 .main-wrapper {
-  margin-left: 193px;
-  margin-right: 166px;
+  width: 100%;
+  max-width: 1100px; /* 全体の最大幅をここでコントロール */
+  margin: 0 auto;    /* 左右を自動で空けて中央寄せにする */
+
 }
   /* 幅の制限をなくす */
 .top-page .form-wrapper{
  max-width: none;
+ margin-left: 193px;
+ margin-right:166px;
 }
 
   /* 改行しない */
@@ -138,6 +143,13 @@ body {
   height: 360px;
   opacity: 1px;
   background-color: #cccccc;
+  overflow: hidden;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* 画像が歪まないようにトリミングして枠に合わせる */
 }
 
 .profile-name-box {
@@ -178,12 +190,9 @@ body {
 }
 
 .profile-text {
-  margin-top:32px;
-  width: 520px;
-  height: 81px;
-  top: 90px;
-  gap: 16px;
-  angle: 0 deg;
+  white-space: pre-wrap;   /* 改行を反映させつつ、幅を超えたら自動で折り返す */
+  word-break: break-word;  /* 長い単語やURLの途中でも必要に応じて改行し、レイアウト崩れを防ぐ */
+  min-height: 81px;
   opacity: 1;
 }
 
@@ -290,6 +299,115 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   margin-top: 48px;
+}
+
+.profile-editor {
+  margin-left:240px;
+  margin-right:240px;
+}
+
+.profile-editor_header{
+  margin: 80px 318px;
+  width: auto;              /* 自動で幅を計算させる */
+  text-align: center;
+}
+
+.edit-page .main-title{
+ white-space:no-wrap;
+}
+
+.profile-editor_form {
+  margin:0 240px;
+}
+
+.profile-produce_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-textarea {
+  width: 480px;
+  height: 122px;
+  gap: 3px;
+  angle: 0 deg;
+  opacity: 1;
+  resize: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  border-bottom-width: 1px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  leading-trim: NONE;
+  line-height: 19px;
+  letter-spacing: 0.15px;
+  vertical-align: middle;
+}
+
+.helper-text {
+  width: 258px;
+  height: 20px;
+  gap: 10px;
+  angle: 0 deg;
+  opacity: 1;
+}
+
+/* アバター画像のコンテナ（外側） */
+.avatar-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* アバター画像のラベル */
+.avator-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* アバター画像のファイル選択欄 */
+.avatar-file-btn {
+  margin-top: 10px;
+  display: inline-block;
+  width: 202px;
+  height: 32px;
+  box-sizing: border-box; /* paddingを含めたサイズにするため */
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color:rgba(0, 0, 0, 0.1); /* ボタンらしい背景色 */
+  color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px; /* 高さに合わせて調整 */
+}
+
+.avatar-file-input {
+  display: none;
+}
+
+.profile-confirm-btn {
+   display: block;
+   margin: 48px auto 0 auto; /* 上に48px、左右をautoにして中央寄せ */
+   background-color: rgba(27, 86, 120, 1);
+   font-family: 'Roboto', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+   font-size: 18px;
+   line-height: 100%;
+   letter-spacing: 0%;
+   width: 322px;
+   height: 53px;
+   opacity: 1;
+   border-radius: 4px;
+   padding: 0; /* 左右のパディングをなくし、文字の改行を防ぐ */
+   color: white;
+   text-align: center;
+   white-space: nowrap;
+   border: none;
+   cursor: pointer;
 }
 
 /* フッター */
