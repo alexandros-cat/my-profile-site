@@ -26,6 +26,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
         public SecurityFilterChain securityFilterChain(HttpSecurity http,MyAuthenticationFailureHandler failureHandler) throws Exception {
 
             http
+            .csrf(csrf -> csrf.disable()) // 一時的、あるいは必要に応じてCSRF保護を無効化
             .authorizeHttpRequests(
                 auth -> auth.requestMatchers(
                     "/",

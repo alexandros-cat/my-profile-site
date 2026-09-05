@@ -8,7 +8,7 @@ import com.spring.springbootapplication.entity.User;
 
 @Mapper
 public interface ProfileMapper {
-    @Select("SELECT id, profile, avatar_image FROM users WHERE id = #{id}")
+    @Select("SELECT id, name, profile, avatar_image FROM users WHERE id = #{id}")
     User selectById(Long id);
 
     // ★ データベースのプロフィール情報を更新するメソッドを追加
