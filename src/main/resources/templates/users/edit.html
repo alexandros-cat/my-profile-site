@@ -36,7 +36,7 @@
         <!-- 自己紹介文 -->
         <div class="profile-produce_form">
           <label for="profile">自己紹介文</label>
-          <textarea id="profile" th:field="*{profile}" class="profile-textarea"></textarea><br>
+          <textarea id="profile" th:field="*{profile}" class="profile-textarea"></textarea>
            <p th:errors="*{profile}" class="error-message"></p>
         </div>
 
@@ -48,7 +48,7 @@
           </label>
           <!-- ★修正3: ファイル受取用の avatarFile に変更 -->
           <input type="file" id="avatarFile" th:field="*{avatarFile}" style="display: none;" />
-          <span id="file-name" style="margin-left: 10px; font-size: 0.9rem;">ファイルが選択されていません</span>
+          <span id="file-name" style="margin-left: 10px; font-size: 0.9rem;"></span>
           <p th:errors="*{avatarFile}" class="error-message"></p>
         </div>
 
@@ -67,7 +67,7 @@
   
   <script>
   document.getElementById('avatarFile').addEventListener('change', function(e) {
-    const fileName = e.target.files.length > 0 ? e.target.files[0].name : 'ファイルが選択されていません';
+    const fileName = e.target.files.length > 0 ? e.target.files[0].name : '';
     document.getElementById('file-name').textContent = fileName;
   });
 </script>
