@@ -78,11 +78,18 @@ body {
 /* メインコンテンツ */
 .main-container {
   width: 100%;
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
+  padding-left: 193px;
+  padding-right:166px;
+}
+
+.top-page .main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-wrapper {
@@ -94,8 +101,6 @@ body {
   /* 幅の制限をなくす */
 .top-page .form-wrapper{
  max-width: none;
- margin-left: 193px;
- margin-right:166px;
 }
 
   /* 改行しない */
@@ -129,6 +134,7 @@ body {
   flex-direction: row;
   margin-left:47px;
   margin-right:74px;
+  margin-top: 80px;
 }
 
 .profile-user {
@@ -253,6 +259,7 @@ body {
 .error-message {
   color: #e74c3c;
   font-size: 0.75rem;
+
 }
 
 /* 登録ボタン */
@@ -350,6 +357,7 @@ body {
 
 /* アバター画像のコンテナ（外側） */
 .avatar-form {
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -410,6 +418,10 @@ body {
   width: 100%;
   background-color: #1B5678;
   flex-shrink: 0; /* 高さが縮まらないようにする */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  
 }
 
 .footer-inner {
