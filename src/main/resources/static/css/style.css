@@ -314,6 +314,182 @@ body {
   margin-right:240px;
 }
 
+.main-skill-container {
+  width: 100%;
+  max-width: 960px;       /* 中身のカードと同じ幅にする */
+  margin: 0 auto 80px auto; /* 画面の中央に綺麗に配置し、下部にしっかり余白を確保する */
+  padding: 0;             /* 悪さをしていた左右のパディングを完全に消す */
+  box-sizing: border-box;
+}
+
+.month-selector-wrapper {
+  width: 100%;
+  max-width: 960px;
+  padding:40px
+} 
+
+.month-selector {
+  margin-right:866px;
+  width: 94px;
+  height: 44px;
+  padding-top: 8px 16px;
+  gap: 8px;
+  angle: 0 deg;
+  opacity: 1;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(221, 221, 221, 1);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 24px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.month-selector:after {
+  width: 12px;
+  height: 9px;
+  angle: 180 deg;
+  opacity: 1;
+  background-color: (0, 0, 0, 1);
+}
+
+.categories-wrapper {
+
+}
+
+.categories-item {
+  width: 960px;
+  height: 436px;
+  opacity: 1;
+  border-radius: 8px;
+  border-width: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding:0 40px;
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+
+.categories-item-inner-header {
+  display: flex;
+  justify-content: space-between;
+  width: 880px;
+  height: 48px;
+  angle: 0 deg;
+  opacity: 1;
+}
+
+.categories-item-inner-title {
+  padding-right:96px;
+  padding-bottom:16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 24px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  width: 240px;
+  angle: 0 deg;
+  opacity: 1;
+  border-width: 2px;
+  white-space: nowrap;
+}
+
+.categories-item-inner-table {
+  margin-top: 36px;
+  width: 880px;
+  /* height: 276px; */
+  angle: 0 deg;
+  opacity: 1;
+  border-radius: 4px;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  gap: 0;
+  border: none;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12),
+              0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+              0px 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.th-box {
+  height: 56px;
+  display: flex;
+  align-items: center; /* 上下中央揃え */
+  min-width: 0;
+}
+
+.item-name {
+  margin: 0;
+  padding-left: 40px; /* 左側のインデント（必要に応じて調整） */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  white-space: nowrap;
+}
+
+.study-hours {
+  margin: 0;
+  padding-left: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  white-space: nowrap;
+}
+
+.td-box {
+  margin: 10px 0px;
+}
+
+.item-name span {
+  margin:16px 168px 16px 40px;
+}
+
+.add-item-btn {
+  width: 178px;
+  height: 48px;
+  padding: 16px 40px;
+  angle: 0 deg;
+  opacity: 1;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background: rgba(27, 86, 120, 1);
+}
+
+.add-item-btn p {
+  width: 98px;
+  height: 16px;
+  angle: 0 deg;
+  opacity: 1;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color:rgba(255, 255, 255, 1);
+}
+
 .profile-editor_header{
   margin: 0 318px;
   width:auto;              /* 自動で幅を計算させる */
@@ -417,11 +593,8 @@ body {
 .footer {
   width: 100%;
   background-color: #1B5678;
-  flex-shrink: 0; /* 高さが縮まらないようにする */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  
+  flex-shrink: 0; 
+  margin-top: auto;
 }
 
 .footer-inner {

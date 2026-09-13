@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>skill-edit</title>
+    <!-- 自作のCSSファイルのみでデザインする場合 -->
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="top-page">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">My Portfolio</h1>
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="header_btn">ログアウト</button>
+      </form>    
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-skill-container">
+    <div class="month-selector-wrapper">
+        <select class="month-selector">
+          <option value="9">9月</option>
+          <option value="8">8月</option>
+          <option value="7">7月</option>
+        </select>
+    </div>
+    <div class="categories-wrapper">
+      <div class="categories-item">
+        <div class="categories-item-inner">
+          <div class="categories-item-inner-header">  
+            <div class="categories-item-inner-title">バックエンド</div>
+            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+          </div>  
+          <table class="categories-item-inner-table">
+            <tr>
+              <th class="th-box">
+                <span class="item-name">項目名</span>
+              </th>
+              <th class="th-box study-hours-th">
+                <span class="study-hours">学習時間</span>
+              </th>
+              <th class="th-box"></th>
+              <th class="th-box"></th>
+            </tr>    
+          </table>
+        </div>
+      </div>
+      <div class="categories-item">
+        <div class="categories-item-inner">
+          <div class="categories-item-inner-header">  
+            <div class="categories-item-inner-title">フロントエンド</div>
+            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+          </div>  
+          <table class="categories-item-inner-table">
+            <tr>
+              <th class="th-box">
+                <span class="item-name">項目名</span>
+              </th>
+              <th class="th-box study-hours-th">
+                <span class="study-hours">学習時間</span>
+              </th>
+              <th class="th-box"></th>
+              <th class="th-box"></th>
+            </tr>    
+          </table>
+        </div>
+      </div>
+      <div class="categories-item">
+        <div class="categories-item-inner">
+          <div class="categories-item-inner-header">  
+            <div class="categories-item-inner-title">インフラ</div>
+            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+          </div>  
+          <table class="categories-item-inner-table">
+            <tr>
+              <th class="th-box">
+                <span class="item-name">項目名</span>
+              </th>
+              <th class="th-box study-hours-th">
+                <span class="study-hours">学習時間</span>
+              </th>
+              <th class="th-box"></th>
+              <th class="th-box"></th>
+            </tr>    
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">   
+    <div class="footer-inner">
+      <h5 class="footer-title">portfolio site</h5>
+    </div>
+  </footer>
+</body>
+</html>
