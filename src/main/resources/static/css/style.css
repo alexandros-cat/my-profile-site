@@ -325,7 +325,7 @@ body {
 .month-selector-wrapper {
   width: 100%;
   max-width: 960px;
-  padding:40px
+  padding:40px 0px;
 } 
 
 .month-selector {
