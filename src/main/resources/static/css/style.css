@@ -358,7 +358,7 @@ body {
 }
 
 .categories-wrapper {
-
+  
 }
 
 .categories-item {
@@ -428,6 +428,86 @@ tr {
   min-width: 0;
 }
 
+.table-row {
+  height:73px;
+
+}
+
+.item-name-add {
+  padding-top: 26px;
+  padding-bottom: 26px;
+  padding-left:40px;
+  padding-right:16pxpx;
+}
+
+.study-hours-add {
+
+}
+
+.study-hours-add input{
+  margin:16px 0px;
+  margin-left:16px;
+  margin-right:64px;
+  width: 160px;
+  height: 40px;
+  gap: 10px;
+  angle: 0 deg;
+  opacity: 1;
+}
+
+.study-hours-record .save_btn {
+  width: 158px;
+  height: 32px;
+  angle: 0 deg;
+  opacity: 1;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(27, 86, 120, 1);
+  color:rgba(27, 86, 120, 1);
+  margin:20px 0;
+  margin-right: 16px;
+  margin-left:26px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  white-space: nowrap;
+}
+ 
+.item-name-delete .delete_btn {
+  width: 88px;
+  height: 32px;
+  angle: 0 deg;
+  opacity: 1;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  border-radius: 4px;
+  background-color: rgba(238, 105, 105, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normals;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 20px;
+  margin-left:72px;
+  margin-right:40px;
+  white-space: nowrap;
+}
+
+
 .item-name {
   margin: 0;
   padding-left: 40px; /* 左側のインデント（必要に応じて調整） */
@@ -458,6 +538,23 @@ tr {
   margin:16px 168px 16px 40px;
 }
 
+.categories-form-record .add-item-btn {
+  margin: 0 auto;
+}
+
+.categories-form-record-study-hour {
+  font-family: 'Roboto',sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  leading-trim: NONE;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  vertical-align: middle;
+  color:rgba(0, 0, 0, 0.54);
+  float: left;
+  margin-top: 3px;
+}
+
 .add-item-btn {
   width: 178px;
   height: 48px;
@@ -473,6 +570,8 @@ tr {
   line-height: 100%;
   letter-spacing: 0%;
   background: rgba(27, 86, 120, 1);
+  color: white;
+  white-space: nowrap;
 }
 
 .add-item-btn p {
@@ -529,7 +628,69 @@ tr {
   vertical-align: middle;
 }
 
+.categories-form-record {
+  display: flex;
+  flex-direction: column;
+  gap: 9.5px; 
+}
 
+.categories-form-record-item label {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.15px;
+  vertical-align: middle;
+  margin-right: 443px;
+}
+
+.categories-form-record input {
+  max-width: 100%;
+  width:480px;
+  padding: 0.75rem 0; /* 上下のみ、左右のパディングを調整する場合 */
+  border: none;               /* 一旦すべての枠線を消す */
+  border-bottom: 1px solid #333; /* 下線の色と太さを指定 */
+  border-radius: 0;           /* 下線の場合は角丸を解除 */
+  font-size: 1rem;
+  background-color: transparent; /* 背景を透明にする場合 */
+  transition: border-color 0.2s;
+}
+
+.categories-form-record-study-hour{
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+.categories-form-record-study-hour label  {
+  display: inline-block;
+  margin-right: 431px;
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  leading-trim: NONE;
+  line-height: 12px;
+  letter-spacing: 0.15px;
+  vertical-align: middle;
+}
+
+.categories-form-record input {
+  max-width: 100%;
+  width:480px;
+  padding: 0.75rem 0; /* 上下のみ、左右のパディングを調整する場合 */
+  border: none;               /* 一旦すべての枠線を消す */
+  border-bottom: 1px solid #333; /* 下線の色と太さを指定 */
+  border-radius: 0;           /* 下線の場合は角丸を解除 */
+  font-size: 1rem;
+  background-color: transparent; /* 背景を透明にする場合 */
+  transition: border-color 0.2s;
+}
+
+.add-item-btn {
+
+}
 
 /* アバター画像のコンテナ（外側） */
 .avatar-form {
@@ -587,6 +748,93 @@ tr {
    white-space: nowrap;
    border: none;
    cursor: pointer;
+}
+
+.categories-form-container {
+  width: 100%;
+  max-width: 480px;            /* 左右の余白を自動にして常に画面中央に配置する */
+  margin: 0 auto;
+  box-sizing: border-box;
+} 
+
+.categories-form-select h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  leading-trim: NONE;
+  line-height: 133%;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #000000BF; 
+  white-space: nowrap;  
+  margin:80px 0px;
+  gap: 0px;
+}
+
+.inline-dropdown {
+  text-align: right;       /* テキストを右寄せ */
+  text-align-last: right; 
+  border: none;
+  background: transparent;
+  /* 親（h2）のフォント設定をすべて継承させる */
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* 背景の半透明の黒 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+.custom-modal-box {
+  width: 640px;
+  height: 240px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px; /* Figmaの「間隔 40px」を反映 */
+  box-sizing: border-box;
+}
+
+/* メッセージ部分とボタンの間隔を確保 */
+.custom-modal-body {
+  margin-bottom: 40px; /* Figmaの「間隔 40px」 */
+  text-align: center;
+}
+
+.custom-modal-text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.75);
+  margin: 0;
+}
+
+/* ボタンまわりのレイアウト */
+.custom-modal-footer {
+  text-align: center;
 }
 
 /* フッター */

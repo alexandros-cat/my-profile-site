@@ -7,17 +7,13 @@ services:
     ports:
       - 8080:8080 
       - 5050:5050
-    # tty: true
-    # command: ./gradlew bootRun 
-    # volumes:
-    #   - ./:/app
     env_file:
       - .env
     depends_on:
-      - db
+      - db   # ← ここをハイフン付きのリスト形式にする
 
   db:
-    image: postgres:13.1
+    image: postgres:14.5-alpine
     container_name: db
     environment:
       POSTGRES_USER: "postgres"

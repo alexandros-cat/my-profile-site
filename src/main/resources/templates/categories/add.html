@@ -1,0 +1,95 @@
+  <!DOCTYPE html>
+  <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+<meta charset="UTF-8">
+    <title>skill-edit</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+  <body class="top-page">
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="header-title">My Portfolio</h1>
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class="header_btn">ログアウト</button>
+        </form>    
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="categories-form-container">
+      <div class="categories-form-inner">
+      <form th:action="@{/categories/add}" method="post" th:object="${CategoryRequest}" class="categories-form-record"> 
+        <div class="categories-form-select">
+            <h2>
+              <select id="category-select" class="inline-dropdown" name="category_id" th:field="*{category_id}">
+                <option value="1">バックエンド</option>
+                <option value="2">フロントエンド</option>
+                <option value="3">インフラ</option>
+              </select>
+              <span>に項目を追加</span>
+            </h2>
+         </div>        
+            <!-- 項目名 -->
+            <div class="categories-form-record-item">
+              <label for="title">項目名</label>
+              <input type="text" id="title" th:field="*{study_item}" />
+              <p th:errors="*{study_item}" class="error-message"></p>
+            </div>   
+            
+            <!-- 学習時間 -->
+            <div class="categories-form-record-study-hour">
+              <label for="study_time">学習時間</label>
+              <input type="number" id="study_time" th:field="*{study_time}">
+              <p>分単位で入力してください</p>
+              <p th:errors="*{study_time}" class="error-message"></p>
+            </div>
+            
+            <!-- 追加ボタン -->
+            <button type="submit" class="add-item-btn"><p>追加する</p></button>
+          </form>
+      </div> 
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">   
+      <div class="footer-inner">
+        <h5 class="footer-title">portfolio site</h5>
+      </div>
+    </footer>
+
+    <!-- 登録完了モーダルを表示すること -->
+  <div class="custom-modal-overlay" id="successMsg" style="display: none;" th:if="${successMessage != null}">
+      <div class="custom-modal-box">
+        
+        <!-- メッセージ本体 -->
+        <div class="custom-modal-body">
+          <p class="custom-modal-text" th:text="${successMessage}">
+            ここにメッセージが入ります
+          </p>
+        </div>
+        
+        <!-- ボタンエリア -->
+        <div class="custom-modal-footer">
+          <button type="button" class="add-item-btn" onclick="location.href='/categories/edit'">
+            編集ページに戻る
+          </button>
+        </div>
+
+      </div>  
+    </div>
+
+  <!-- JavaScript -->
+  <script th:inline="javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      const successMessage = /*[[${successMessage}]]*/ null;
+      if (successMessage) {
+        const modalElement = document.getElementById('successMsg');
+        if (modalElement) {
+          // CSSのフレックスボックスで画面中央に表示させる
+          modalElement.style.display = 'flex';
+        }
+      }
+    });
+  </script>
+ </body> 
+</html>

@@ -20,18 +20,48 @@
   <!-- メインコンテンツ -->
   <main class="main-skill-container">
     <div class="month-selector-wrapper">
-        <select class="month-selector">
-          <option value="9">9月</option>
-          <option value="8">8月</option>
-          <option value="7">7月</option>
+      <form th:action="@{/categories/edit}" method="get">
+        <select class="month-selector" id="month-selector" name="month" onchange="this.form.submit()">
         </select>
+      </form>
+        <script>
+         const select = document.getElementById('month-selector');
+          const now = new Date();
+          const currentYear = now.getFullYear();
+          const currentMonth = now.getMonth() + 1;
+
+          // URLから現在選択されている月を取得する（なければ今月）
+          const urlParams = new URLSearchParams(window.location.search);
+          const selectedMonth = urlParams.get('month') ? parseInt(urlParams.get('month')) : currentMonth;
+          
+          // 過去3ヶ月分（例：今月を含めた直近3ヶ月、または過去に向かう3ヶ月）を安全に生成
+          for (let i = 2; i >= 0; i--) {
+              // Dateオブジェクトを使って年またぎ（1月→12月など）を正確に計算
+              let d = new Date(currentYear, currentMonth - 1 - i, 1);
+              let targetMonth = d.getMonth() + 1; // 1〜12月
+              let targetYear = d.getFullYear();   // 必要に応じて年を分ける場合
+
+              let option = document.createElement("option");
+              // valueは文字列としてJava側（String month）に渡すためそのままセット
+              option.setAttribute("value", targetMonth);
+              option.innerHTML = targetMonth + "月";
+
+              // 選択状態の判定
+              if (targetMonth === selectedMonth) {  
+                  option.setAttribute("selected", "selected"); 
+              }
+
+              select.appendChild(option);
+          }
+        </script>
+        
     </div>
     <div class="categories-wrapper">
       <div class="categories-item">
         <div class="categories-item-inner">
           <div class="categories-item-inner-header">  
             <div class="categories-item-inner-title">バックエンド</div>
-            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
           </div>  
           <table class="categories-item-inner-table">
             <tr>
@@ -43,6 +73,18 @@
               </th>
               <th class="th-box"></th>
               <th class="th-box"></th>
+            </tr>
+            <tr class="table-row" th:each="learning_data:${backend_data}">
+                <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+                <td class="study-hours-add">
+                  <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                </td>
+                <td class="study-hours-record">
+                    <button type="submit" class="save_btn">学習時間を保存する</button>
+                </td>
+                <td class="item-name-delete">
+                  <button type="submit" class="delete_btn">削除する</button>
+                </td>
             </tr>    
           </table>
         </div>
@@ -51,7 +93,7 @@
         <div class="categories-item-inner">
           <div class="categories-item-inner-header">  
             <div class="categories-item-inner-title">フロントエンド</div>
-            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
           </div>  
           <table class="categories-item-inner-table">
             <tr>
@@ -63,7 +105,19 @@
               </th>
               <th class="th-box"></th>
               <th class="th-box"></th>
-            </tr>    
+            </tr>
+            <tr class="table-row" th:each="learning_data:${frontend_data}">
+                <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+                <td class="study-hours-add">
+                  <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                </td>
+                <td class="study-hours-record">
+                    <button type="submit" class="save_btn">学習時間を保存する</button>
+                </td>
+                <td class="item-name-delete">
+                  <button type="submit" class="delete_btn">削除する</button>
+                </td>
+            </tr>      
           </table>
         </div>
       </div>
@@ -71,7 +125,7 @@
         <div class="categories-item-inner">
           <div class="categories-item-inner-header">  
             <div class="categories-item-inner-title">インフラ</div>
-            <button type="button" class="add-item-btn"><p>項目を追加する</p></button>
+            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
           </div>  
           <table class="categories-item-inner-table">
             <tr>
@@ -83,7 +137,19 @@
               </th>
               <th class="th-box"></th>
               <th class="th-box"></th>
-            </tr>    
+            </tr> 
+            <tr class="table-row" th:each="learning_data:${infra_data}">
+              <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+              <td class="study-hours-add">
+              <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+              </td>
+              <td class="study-hours-record">
+                <button type="submit" class="save_btn">学習時間を保存する</button>
+              </td>
+              <td class="item-name-delete">
+              <button type="submit" class="delete_btn">削除する</button>
+              </td>
+            </tr>        
           </table>
         </div>
       </div>
