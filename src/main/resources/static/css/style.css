@@ -363,15 +363,17 @@ body {
 
 .categories-item {
   width: 960px;
-  height: 436px;
+  height: auto;          
+  min-height: 436px; 
   opacity: 1;
   border-radius: 8px;
   border-width: 1px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  padding:0 40px;
+  padding: 0 40px;
   padding-top: 40px;
   margin-bottom: 40px;
+  overflow: hidden;
 }
 
 .categories-item-inner-header {
@@ -689,7 +691,7 @@ tr {
 }
 
 .add-item-btn {
-
+  text-decoration: none; /* 下線を消す */
 }
 
 /* アバター画像のコンテナ（外側） */
@@ -834,7 +836,49 @@ tr {
 
 /* ボタンまわりのレイアウト */
 .custom-modal-footer {
-  text-align: center;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+}
+
+.custom-modal-footer .add-item-btn{
+  width: 192px;
+  height: 48px;
+  angle: 0 deg;
+  opacity: 1;
+  border-radius: 4px;
+  padding-top: 16px;
+  padding-right: 40px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+
+}
+
+/* テーブルを囲むコンテナに高さを制限してスクロールを付与 */
+.table-scroll-container {
+    max-height: 320px;  /* 3〜4項目がおさまる高さに調整 */
+    overflow-y: auto;   /* 制限を超えたら縦スクロール */
+    overflow-x: hidden; /* 横スク   ロールは絶対にさせない */
+    width: 100%;
+}     
+  
+/* スクロールしたときにヘッダーが消えないように固定したい場合 */
+.categories-item-inner-table th {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; /* 背景色を指定して後ろの文字が透けないようにする */
+    z-index: 10;
+}
+
+.categories-item-inner-table {
+  width: 100%;
+  border-collapse: collapse; 
+  border-spacing: 0;        
+}
+
+.categories-item-inner-table + .table-scroll-container {
+  margin-top: 0;
 }
 
 /* フッター */

@@ -34,19 +34,16 @@
           const urlParams = new URLSearchParams(window.location.search);
           const selectedMonth = urlParams.get('month') ? parseInt(urlParams.get('month')) : currentMonth;
           
-          // 過去3ヶ月分（例：今月を含めた直近3ヶ月、または過去に向かう3ヶ月）を安全に生成
+          // 過去3ヶ月分を安全に生成
           for (let i = 2; i >= 0; i--) {
-              // Dateオブジェクトを使って年またぎ（1月→12月など）を正確に計算
               let d = new Date(currentYear, currentMonth - 1 - i, 1);
-              let targetMonth = d.getMonth() + 1; // 1〜12月
-              let targetYear = d.getFullYear();   // 必要に応じて年を分ける場合
+              let targetMonth = d.getMonth() + 1; 
+              let targetYear = d.getFullYear();   
 
               let option = document.createElement("option");
-              // valueは文字列としてJava側（String month）に渡すためそのままセット
               option.setAttribute("value", targetMonth);
               option.innerHTML = targetMonth + "月";
 
-              // 選択状態の判定
               if (targetMonth === selectedMonth) {  
                   option.setAttribute("selected", "selected"); 
               }
@@ -57,102 +54,118 @@
         
     </div>
     <div class="categories-wrapper">
+
+      <!-- バックエンド -->
       <div class="categories-item">
         <div class="categories-item-inner">
           <div class="categories-item-inner-header">  
             <div class="categories-item-inner-title">バックエンド</div>
-            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
+            <a th:href="@{/categories/add(categoryId=1, month=${param.month != null ? param.month[0] : ''})}" class="add-item-btn">項目を追加する</a>
           </div>  
-          <table class="categories-item-inner-table">
-            <tr>
-              <th class="th-box">
-                <span class="item-name">項目名</span>
-              </th>
-              <th class="th-box study-hours-th">
-                <span class="study-hours">学習時間</span>
-              </th>
-              <th class="th-box"></th>
-              <th class="th-box"></th>
-            </tr>
-            <tr class="table-row" th:each="learning_data:${backend_data}">
-                <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
-                <td class="study-hours-add">
-                  <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
-                </td>
-                <td class="study-hours-record">
-                    <button type="submit" class="save_btn">学習時間を保存する</button>
-                </td>
-                <td class="item-name-delete">
-                  <button type="submit" class="delete_btn">削除する</button>
-                </td>
-            </tr>    
-          </table>
+          
+          <!-- スクロールするコンテナの中にヘッダーもデータも一緒に入れる -->
+          <div class="table-scroll-container">
+            <table class="categories-item-inner-table"> 
+              <!-- ヘッダー行 -->
+              <tr>
+                <th class="th-box"><span class="item-name">項目名</span></th>
+                <th class="th-box study-hours-th"><span class="study-hours">学習時間</span></th>
+                <th class="th-box"></th>
+                <th class="th-box"></th>
+              </tr>
+              <!-- データ行 -->
+              <tr class="table-row" th:each="learning_data:${backend_data}">
+                  <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+                  <td class="study-hours-add">
+                    <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                  </td>
+                  <td class="study-hours-record">
+                      <button type="submit" class="save_btn">学習時間を保存する</button>
+                  </td>
+                  <td class="item-name-delete">
+                    <button type="submit" class="delete_btn">削除する</button>
+                  </td>
+              </tr>    
+            </table>
+          </div>
+
         </div>
       </div>
+
+      <!-- フロントエンド -->
       <div class="categories-item">
         <div class="categories-item-inner">
           <div class="categories-item-inner-header">  
             <div class="categories-item-inner-title">フロントエンド</div>
-            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
+            <a th:href="@{/categories/add(categoryId=2, month=${param.month != null ? param.month[0] : ''})}" class="add-item-btn">項目を追加する</a>
           </div>  
-          <table class="categories-item-inner-table">
-            <tr>
-              <th class="th-box">
-                <span class="item-name">項目名</span>
-              </th>
-              <th class="th-box study-hours-th">
-                <span class="study-hours">学習時間</span>
-              </th>
-              <th class="th-box"></th>
-              <th class="th-box"></th>
-            </tr>
-            <tr class="table-row" th:each="learning_data:${frontend_data}">
+         
+          <!-- スクロールするコンテナの中にヘッダーもデータも一緒に入れる -->
+          <div class="table-scroll-container">
+            <table class="categories-item-inner-table">
+              <!-- ヘッダー行 -->
+              <tr>
+                <th class="th-box"><span class="item-name">項目名</span></th>
+                <th class="th-box study-hours-th"><span class="study-hours">学習時間</span></th>
+                <th class="th-box"></th>
+                <th class="th-box"></th>
+              </tr>
+              <!-- データ行 -->
+              <tr class="table-row" th:each="learning_data:${frontend_data}">
+                  <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+                  <td class="study-hours-add">
+                    <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                  </td>
+                  <td class="study-hours-record">
+                      <button type="submit" class="save_btn">学習時間を保存する</button>
+                  </td>
+                  <td class="item-name-delete">
+                    <button type="submit" class="delete_btn">削除する</button>
+                  </td>
+              </tr>      
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- インフラ -->
+      <div class="categories-item">
+        <div class="categories-item-inner">
+          <div class="categories-item-inner-header">  
+            <div class="categories-item-inner-title">インフラ</div>
+            <a th:href="@{/categories/add(categoryId=3, month=${param.month != null ? param.month[0] : ''})}" class="add-item-btn">項目を追加する</a>
+          </div>  
+          
+          <!-- スクロールするコンテナの中にヘッダーもデータも一緒に入れる -->
+          <div class="table-scroll-container">
+            <table class="categories-item-inner-table">
+              <!-- ヘッダー行 -->
+              <tr>
+                <th class="th-box"><span class="item-name">項目名</span></th> 
+                <th class="th-box study-hours-th"><span class="study-hours">学習時間</span></th>
+                <th class="th-box"></th>
+                <th class="th-box"></th>
+              </tr> 
+              <!-- データ行 -->
+              <tr class="table-row" th:each="learning_data:${infra_data}">
                 <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
                 <td class="study-hours-add">
                   <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
                 </td>
                 <td class="study-hours-record">
-                    <button type="submit" class="save_btn">学習時間を保存する</button>
+                  <button type="submit" class="save_btn">学習時間を保存する</button>
                 </td>
                 <td class="item-name-delete">
                   <button type="submit" class="delete_btn">削除する</button>
                 </td>
-            </tr>      
-          </table>
+              </tr>        
+            </table>
+          </div>
+
         </div>
       </div>
-      <div class="categories-item">
-        <div class="categories-item-inner">
-          <div class="categories-item-inner-header">  
-            <div class="categories-item-inner-title">インフラ</div>
-            <button type="button" class="add-item-btn" onclick="location.href='/categories/add'"><p>項目を追加する</p></button>
-          </div>  
-          <table class="categories-item-inner-table">
-            <tr>
-              <th class="th-box">
-                <span class="item-name">項目名</span>
-              </th>
-              <th class="th-box study-hours-th">
-                <span class="study-hours">学習時間</span>
-              </th>
-              <th class="th-box"></th>
-              <th class="th-box"></th>
-            </tr> 
-            <tr class="table-row" th:each="learning_data:${infra_data}">
-              <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
-              <td class="study-hours-add">
-              <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
-              </td>
-              <td class="study-hours-record">
-                <button type="submit" class="save_btn">学習時間を保存する</button>
-              </td>
-              <td class="item-name-delete">
-              <button type="submit" class="delete_btn">削除する</button>
-              </td>
-            </tr>        
-          </table>
-        </div>
-      </div>
+
     </div>
   </main>
 
