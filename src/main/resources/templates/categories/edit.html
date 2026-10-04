@@ -76,12 +76,24 @@
               <!-- データ行 -->
               <tr class="table-row" th:each="learning_data:${backend_data}">
                   <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
+                  
+                  <!-- 学習時間入力欄 -->
                   <td class="study-hours-add">
-                    <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                    <form th:id="${learning_data.id}" th:action="@{/categories/edit}" method="post" >
+                      <input type="hidden" name="id" th:value="${learning_data.id}" />
+                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                      <input type="hidden" name="month" th:value="${currentMonth}" />
+                      <input type="number" min="0" step="1" name="study_time" th:value="${learning_data.studyTime}" />
+                    </form>
+                  </td> 
+                  
+                   <!-- 学習時間を保存する -->
+                   <td class="study-hours-record">
+                      <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                   </td>
-                  <td class="study-hours-record">
-                      <button type="submit" class="save_btn">学習時間を保存する</button>
-                  </td>
+
+                  
+                  <!-- 行を削除 -->
                   <td class="item-name-delete">
                     <button type="submit" class="delete_btn">削除する</button>
                   </td>
@@ -114,10 +126,15 @@
               <tr class="table-row" th:each="learning_data:${frontend_data}">
                   <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
                   <td class="study-hours-add">
-                    <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                    <form th:id="${learning_data.id}" th:action="@{/categories/edit}" method="post" >
+                      <input type="hidden" name="id" th:value="${learning_data.id}" />
+                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                      <input type="hidden" name="month" th:value="${currentMonth}" />
+                      <input type="number" min="0" step="1" name="study_time" th:value="${learning_data.studyTime}"/>
+                    </form>
                   </td>
                   <td class="study-hours-record">
-                      <button type="submit" class="save_btn">学習時間を保存する</button>
+                      <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                   </td>
                   <td class="item-name-delete">
                     <button type="submit" class="delete_btn">削除する</button>
@@ -151,10 +168,15 @@
               <tr class="table-row" th:each="learning_data:${infra_data}">
                 <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
                 <td class="study-hours-add">
-                  <input type="number" min="0" step="1" value="0" id="study_time" th:value="${learning_data.studyTime}">
+                 <form th:id="${learning_data.id}" th:action="@{/categories/edit}" method="post" >
+                      <input type="hidden" name="id" th:value="${learning_data.id}" />
+                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                      <input type="hidden" name="month" th:value="${currentMonth}" />
+                      <input type="number" min="0" step="1" name="study_time" th:value="${learning_data.studyTime}"/>
+                    </form>
                 </td>
                 <td class="study-hours-record">
-                  <button type="submit" class="save_btn">学習時間を保存する</button>
+                  <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                 </td>
                 <td class="item-name-delete">
                   <button type="submit" class="delete_btn">削除する</button>
@@ -165,7 +187,6 @@
 
         </div>
       </div>
-
     </div>
   </main>
 
@@ -175,5 +196,39 @@
       <h5 class="footer-title">portfolio site</h5>
     </div>
   </footer>
+  
+     <!-- 登録完了モーダルを表示すること -->
+    <div class="custom-modal-overlay" id="successMsg" style="display: none;" th:if="${successMessage != null}">
+      <div class="custom-modal-box">
+
+      <!-- メッセージ本体 -->
+      <div class="custom-modal-body">
+      <p class="custom-modal-text" th:utext="${successMessage}">
+      ここにメッセージが入ります
+      </p>
+      </div>
+
+      <!-- ボタンエリア -->
+      <div class="custom-modal-footer">
+      <button type="button" class="add-item-btn" onclick="location.href='/categories/edit'">
+      編集ページに戻る
+      </button>
+      </div>
+    </div>  
+
+   <!-- JavaScript -->
+    <script th:inline="javascript">
+      window.addEventListener('DOMContentLoaded', () => {
+        const successMessage = /*[[${successMessage}]]*/ null;
+        if (successMessage) {
+          const modalElement = document.getElementById('successMsg');
+          if (modalElement) {
+            // CSSのフレックスボックスで画面中央に表示させる
+            modalElement.style.display = 'flex';
+          }
+        }
+      });
+    </script>
+
 </body>
 </html>

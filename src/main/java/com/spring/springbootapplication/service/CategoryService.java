@@ -34,7 +34,13 @@ public class CategoryService {
     // 学習時間を保存する処理   
     public void saveStudyTime(LearningData learning_data){
      categoryMapper.update(learning_data);
-
     }
+    
+     // 学習時間を更新する処理   
+    public void updateStudyTime(LearningData learning_data){
+     categoryMapper.update(learning_data);
+    }
+
+    
     
 }

@@ -3,7 +3,6 @@ package com.spring.springbootapplication.dto;
 import java.io.Serializable;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
 
@@ -11,11 +10,21 @@ import lombok.Data;
 
 @Data
 public class CategoryRequest implements Serializable {
+    
+    /**
+     * 学習データID（更新時にどの行のデータかを特定するため）
+     */
+    private Long id;
 
     /**
-     * カテゴリーID )
+     * カテゴリーID
      */
     private Integer category_id;
+    
+    /**
+     * 月
+     */
+    private String month;
 
     /**
      * 名前

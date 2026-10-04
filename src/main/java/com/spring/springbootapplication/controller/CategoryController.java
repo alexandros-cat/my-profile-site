@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.springbootapplication.dto.CategoryRequest;
@@ -56,6 +58,8 @@ public class CategoryController {
         model.addAttribute("backend_data", backendList);
         model.addAttribute("frontend_data", frontendList);
         model.addAttribute("infra_data", infraList);
+
+        model.addAttribute("currentMonth", month);
         
         return "categories/edit"; 
     }
@@ -161,5 +165,33 @@ public class CategoryController {
             case 3: return "インフラ";
             default: return "カテゴリー";
         }
+    }
+
+    @PostMapping("/edit")
+    public String studyTimeUpdate(
+        @ModelAttribute CategoryRequest categoryRequest,
+        RedirectAttributes redirectAttributes,
+        Model model) {
+
+
+        // 学習時間の更新処理
+        LearningData learningData = new LearningData();
+        learningData.setId(categoryRequest.getId());
+        learningData.setStudyTime(categoryRequest.getStudy_time());
+        categoryService.updateStudyTime(learningData);
+
+        // リダイレクト先にも「何月か」を維持して戻す
+        String month = categoryRequest.getMonth();
+        if (month != null && !month.isEmpty()) {
+            redirectAttributes.addAttribute("month", month);
+        }
+        
+        // フラッシュメッセージを設定する
+        String successMessage = categoryRequest.getStudy_item() + " の学習時間を保存しました！";
+        redirectAttributes.addFlashAttribute("successMessage", successMessage);
+        
+        
+
+        return "redirect:/categories/edit";
     }
 }
