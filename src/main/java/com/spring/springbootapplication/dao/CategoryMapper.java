@@ -14,7 +14,7 @@ import com.spring.springbootapplication.entity.LearningData;
 public interface CategoryMapper {
         
     //カテゴリー一覧表示 
-    @Select("SELECT id, user_id, category_id, study_month, study_item, study_time FROM learning_data")
+    @Select("SELECT id, user_id, category_id, study_month, study_item, study_time FROM learning_data ORDER BY id ASC")
     public List<LearningData> findAllLearning_data();
     
     // 項目を追加する処理
@@ -33,6 +33,7 @@ public interface CategoryMapper {
     @Update("UPDATE learning_data SET study_time = #{studyTime} WHERE id = #{id}")
     void update(LearningData learning_data);
 
+   
 
 
 }
