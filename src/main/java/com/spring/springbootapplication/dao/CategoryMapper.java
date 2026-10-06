@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Delete;
 
 import com.spring.springbootapplication.entity.MonthlyStudyDto;
 import com.spring.springbootapplication.entity.LearningData;
@@ -33,6 +34,9 @@ public interface CategoryMapper {
     @Update("UPDATE learning_data SET study_time = #{studyTime} WHERE id = #{id}")
     void update(LearningData learning_data);
 
+    // 学習データを削除する処理
+    @Delete("DELETE FROM learning_data WHERE id = #{id}")
+    void delete(LearningData learningData);
    
 
 

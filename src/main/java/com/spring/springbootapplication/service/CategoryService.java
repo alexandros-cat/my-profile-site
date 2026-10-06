@@ -41,6 +41,12 @@ public class CategoryService {
      categoryMapper.update(learning_data);
     }
 
+     // 学習時間を削除する処理   
+    public void deleteStudyTime(LearningData learning_data){
+     categoryMapper.delete(learning_data);
+
+    }
+
     
     
 }

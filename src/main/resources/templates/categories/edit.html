@@ -92,10 +92,14 @@
                       <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                   </td>
 
-                  
                   <!-- 行を削除 -->
                   <td class="item-name-delete">
-                    <button type="submit" class="delete_btn">削除する</button>
+                    <form th:action="@{/categories/delete}" method="post">
+                      <input type="hidden" name="id" th:value="${learning_data.id}" />
+                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                      <input type="hidden" name="month" th:value="${currentMonth}" />
+                    <button type="submit"  class="delete_btn">削除する</button>
+                    </form>
                   </td>
               </tr>    
             </table>
@@ -137,8 +141,13 @@
                       <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                   </td>
                   <td class="item-name-delete">
-                    <button type="submit" class="delete_btn">削除する</button>
-                  </td>
+                    <form th:action="@{/categories/delete}" method="post">
+                      <input type="hidden" name="id" th:value="${learning_data.id}" />
+                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                      <input type="hidden" name="month" th:value="${currentMonth}" />
+                      <button type="submit"  class="delete_btn">削除する</button>
+                    </form>
+                 </td>
               </tr>      
             </table>
           </div>
@@ -169,17 +178,22 @@
                 <td class="item-name-add" th:text="${learning_data.studyItem}"></td>
                 <td class="study-hours-add">
                  <form th:id="${learning_data.id}" th:action="@{/categories/edit}" method="post" >
-                      <input type="hidden" name="id" th:value="${learning_data.id}" />
-                      <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
-                      <input type="hidden" name="month" th:value="${currentMonth}" />
-                      <input type="number" min="0" step="1" name="study_time" th:value="${learning_data.studyTime}"/>
-                    </form>
+                    <input type="hidden" name="id" th:value="${learning_data.id}" />
+                    <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                    <input type="hidden" name="month" th:value="${currentMonth}" />
+                    <input type="number" min="0" step="1" name="study_time" th:value="${learning_data.studyTime}"/>
+                  </form>
                 </td>
                 <td class="study-hours-record">
                   <button type="submit" th:form="${learning_data.id}" class="save_btn">学習時間を保存する</button>
                 </td>
                 <td class="item-name-delete">
-                  <button type="submit" class="delete_btn">削除する</button>
+                 <form th:action="@{/categories/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${learning_data.id}" />
+                    <input type="hidden" name="study_item" th:value="${learning_data.studyItem}" />
+                    <input type="hidden" name="month" th:value="${currentMonth}" />
+                    <button type="submit"  class="delete_btn">削除する</button>
+                 </form>
                 </td>
               </tr>        
             </table>

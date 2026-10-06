@@ -194,4 +194,32 @@ public class CategoryController {
 
         return "redirect:/categories/edit";
     }
+
+    /** ユーザー削除処理*/
+    @PostMapping("/delete")
+    public String studyTimeDelete(
+        CategoryRequest categoryRequest,
+        Model model,
+        RedirectAttributes redirectAttributes ) {
+    	
+    	//ユーザーを削除
+        LearningData learningData = new LearningData();
+        learningData.setId(categoryRequest.getId());
+        learningData.setStudyTime(categoryRequest.getStudy_time());
+    	categoryService.deleteStudyTime(learningData);
+    	
+        // リダイレクト先にも「何月か」を維持して戻す
+        String month = categoryRequest.getMonth();
+        if (month != null && !month.isEmpty()) {
+            redirectAttributes.addAttribute("month", month);
+        }
+
+         // フラッシュメッセージを設定する
+        String successMessage = categoryRequest.getStudy_item() + " を削除しました！";
+        redirectAttributes.addFlashAttribute("successMessage", successMessage);
+
+    	//ユーザー一覧画面にリダイレクト
+    	return "redirect:/categories/edit";
+    }
+
 }
