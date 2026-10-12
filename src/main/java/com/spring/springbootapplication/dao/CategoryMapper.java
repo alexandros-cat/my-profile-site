@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Delete;
@@ -38,6 +39,12 @@ public interface CategoryMapper {
     @Delete("DELETE FROM learning_data WHERE id = #{id}")
     void delete(LearningData learningData);
    
-
-
+      // 学習データ合算する処理
+    @Select("SELECT SUM(study_time) FROM learning_data " +
+                "WHERE user_id = #{userId} " +
+                "AND category_id = #{categoryId} " +
+                "AND study_month LIKE CONCAT(#{studyMonth}, '%')")
+     Integer findTotalByMonth(@Param("userId") Long userId, 
+                                @Param("categoryId") Long categoryId, 
+                                @Param("studyMonth") String studyMonth);
 }

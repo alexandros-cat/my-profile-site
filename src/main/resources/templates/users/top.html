@@ -11,7 +11,6 @@
   <header class="header">
     <div class="header-inner">
       <h1 class="header-title">My Portfolio</h1>
-      <!-- <button type="button" class="header_btn">ログイン</button> -->
       <form th:action="@{/logout}" method="post">
         <button type="submit" class="header_btn">ログアウト</button>
       </form>    
@@ -19,8 +18,8 @@
   </header>
 
   <!-- メインコンテンツ -->
-  <main class="main-container">
-    <div class="form-wrapper ">
+  <main class="profile-container">
+    <div class="form-wrapper">
       <!-- プロフィールセクション -->
       <section class="profile-section">
         <!-- プロフィールセクション -->
@@ -41,14 +40,68 @@
           <!-- </form> -->
         </div>
       </section>
-      <!-- チャートセクション -->
-      <section class="chart-section">
-        <h2 class="study-chart">学習チャート</h2>
-         <button type="button" class="profile-btn" onclick="location.href='categories/edit'">編集する</button>
-        <!-- ここにチャートが入ります -->
-      </section>
-    </div>    
+     <!-- チャートセクション -->
+      <div class="chart-wrapper">
+       <section class="chart-section">
+         <h2 class="study-chart">学習チャート</h2>
+         <button type="button" class="chart-edit-btn" onclick="location.href='categories/edit'">編集する</button>
+       </section>     
+       <!-- チャート領域のコンテナ -->
+       <div id="learningChart">
+         <canvas id="myBarChart"></canvas>
+       </div>
+     </div>
+    </div>   
   </main>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+ <script type="text/javascript" th:inline="javascript">
+  // コントローラーから渡された label と data を受け取る
+  var label = /*[[${label}]]*/ ["先々月", "先月", "今月"];
+  var backend = /*[[${backendData}]]*/ [0, 0, 0];
+  var frontend = /*[[${frontendData}]]*/ [0, 0, 0];
+  var infra = /*[[${infraData}]]*/ [0, 0, 0];
+  
+  var ctx = document.getElementById("myBarChart");
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+     //凡例のラベル
+     labels: label,
+      datasets: [
+        {
+          label: 'バックエンド', //データ項目のラベル
+          data: backend, //グラフのデータ
+          backgroundColor: "#F8C8DC",
+        },{
+          label: 'フロントエンド', //データ項目のラベル
+          data: frontend, //グラフのデータ
+          backgroundColor: "#FFE4B5",
+        },{
+          label: 'インフラ', //データ項目のラベル
+          data: infra, //グラフのデータ
+          backgroundColor: "#FFD75E",
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        //グラフタイトル
+        text: 'chart.js Bar chart'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 250, //最大値
+            suggestedMin: 0, //最小値
+            stepSize: 50, //縦ラベルの数値単位
+            }
+        }]
+      },
+    }
+  });
+</script>
 
   <!-- フッター -->
   <footer class="footer">   
