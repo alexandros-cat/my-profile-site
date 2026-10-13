@@ -54,9 +54,25 @@
     </div>   
   </main>
     
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
  <script type="text/javascript" th:inline="javascript">
+  // チャートエリア（目盛り部分）の四方を黒い枠線で囲むプラグイン
+  Chart.pluginService.register({
+    afterDraw: function (chart) {
+      if (chart.id === myBarChart.id) {
+        var ctx = chart.chart.ctx;
+        var xAxis = chart.scales['x-axis-0'];
+        var yAxis = chart.scales['y-axis-0'];
+        
+        ctx.save();
+        ctx.strokeStyle = '#000000'; // 枠線の色（黒）
+        ctx.lineWidth = 0.5;           // 線の太さ
+        // 目盛り領域の四隅（左上から右下まで）を囲む四角形を描画
+        ctx.strokeRect(xAxis.left, yAxis.top, xAxis.width, yAxis.height);
+        ctx.restore();
+      }
+    }
+  });
   // コントローラーから渡された label と data を受け取る
   var label = /*[[${label}]]*/ ["先々月", "先月", "今月"];
   var backend = /*[[${backendData}]]*/ [0, 0, 0];
