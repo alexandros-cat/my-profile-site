@@ -45,15 +45,13 @@ public class LoginController {
         // 最新のユーザー情報をモデルにセットする
         model.addAttribute("user", latestUser);
         
-       // 横軸のラベル（先々月、先月、今月）
+        // 横軸のラベル（先々月、先月、今月）
         String[] label = {"先々月", "先月", "今月"};
+
         YearMonth currentMonth = YearMonth.now();
-        
-        // 追加・変更部分
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String currentMonthStr = currentMonth.format(formatter);
-        String previousMonthStr = currentMonth.minusMonths(1).format(formatter);
-        String twoMonthsAgoStr = currentMonth.minusMonths(2).format(formatter);
+        String currentMonthStr = String.valueOf(currentMonth.getMonthValue());
+        String previousMonthStr = String.valueOf(currentMonth.minusMonths(1).getMonthValue());
+        String twoMonthsAgoStr = String.valueOf(currentMonth.minusMonths(2).getMonthValue());
 
         Long userId = loginUser.getUser().getId();
 
