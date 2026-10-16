@@ -57,8 +57,6 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   color: rgba(0, 0, 0, 0.75);
-  /* width: 152px;
-  height: 53px; */
   border-radius: 4px;
   padding-top: 16px;
   padding-right: 40px;
@@ -83,13 +81,16 @@ body {
   align-items: center;
   padding-left: 193px;
   padding-right:166px;
-}
+} 
 
-.top-page .main-container {
+.profile-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 80px;
+  padding-left: 240px;
+  padding-right: 240px;
 }
 
 .main-wrapper {
@@ -132,9 +133,7 @@ body {
 .profile-section {
   display: flex;
   flex-direction: row;
-  margin-left:47px;
-  margin-right:74px;
-  margin-top: 80px;
+  margin-bottom: 120px;
 }
 
 .profile-user {
@@ -879,6 +878,76 @@ tr {
 
 .categories-item-inner-table + .table-scroll-container {
   margin-top: 0;
+}
+
+
+.infra-bar {
+  position: absolute;
+  width: 63px;
+  height: 186px;
+  top: 1174px;
+  left: 467px;
+}
+
+.chart-section {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 0 0 40px 0; /* 下部の余白調整 */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* タイトルとボタンを中央揃えにする場合 */
+}
+
+.study-chart {
+  width: auto;          /* 固定幅を解除して中央に合わせる */
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 36px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+#learningChart {
+  width: 100%;
+  max-width: 880px; 
+  height: 525px; /* グラフの最大幅 */
+  margin: 0 auto;       /* 左右中央寄せ */
+  box-sizing: border-box;
+}
+
+#learningChart canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.chart-edit-btn {
+  margin-top:40px;
+  width: 152px;
+  height: 53px;
+  padding: 16px 40px;
+  angle: 0 deg;
+  opacity: 1;
+  border-radius: 4px;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background: rgba(27, 86, 120, 1);
+  color: white;
+  white-space: nowrap;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* フッター */

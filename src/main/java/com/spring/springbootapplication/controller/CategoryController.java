@@ -44,7 +44,25 @@ public class CategoryController {
         List<LearningData> infraList = new ArrayList<>();
 
         for (LearningData data : allLearningData) {
-            if (month.equals(data.getStudyMonth())) {
+            String studyMonth = data.getStudyMonth();
+            
+            // 月が一致するか（数値変換や部分一致も含めて柔軟に判定）
+            boolean isMatch = false;
+            if (studyMonth != null && !studyMonth.isEmpty()) {
+                try {
+                    int m1 = Integer.parseInt(month);
+                    int m2 = Integer.parseInt(studyMonth.replaceAll("[^0-9]", ""));
+                    if (m1 == m2) {
+                        isMatch = true;
+                    }
+                } catch (NumberFormatException e) {
+                    if (studyMonth.equals(month) || studyMonth.endsWith("-" + month) || studyMonth.endsWith("/" + month)) {
+                        isMatch = true;
+                    }
+                }
+            }
+
+            if (isMatch) {
                 if (data.getCategoryId() == 1) {
                     backendList.add(data);     
                 } else if (data.getCategoryId() == 2) {

@@ -11,7 +11,6 @@
   <header class="header">
     <div class="header-inner">
       <h1 class="header-title">My Portfolio</h1>
-      <!-- <button type="button" class="header_btn">ログイン</button> -->
       <form th:action="@{/logout}" method="post">
         <button type="submit" class="header_btn">ログアウト</button>
       </form>    
@@ -19,8 +18,8 @@
   </header>
 
   <!-- メインコンテンツ -->
-  <main class="main-container">
-    <div class="form-wrapper ">
+  <main class="profile-container">
+    <div class="form-wrapper">
       <!-- プロフィールセクション -->
       <section class="profile-section">
         <!-- プロフィールセクション -->
@@ -41,14 +40,97 @@
           <!-- </form> -->
         </div>
       </section>
-      <!-- チャートセクション -->
-      <section class="chart-section">
-        <h2 class="study-chart">学習チャート</h2>
-         <button type="button" class="profile-btn" onclick="location.href='categories/edit'">編集する</button>
-        <!-- ここにチャートが入ります -->
-      </section>
-    </div>    
+     <!-- チャートセクション -->
+      <div class="chart-wrapper">
+       <section class="chart-section">
+         <h2 class="study-chart">学習チャート</h2>
+         <button type="button" class="chart-edit-btn" onclick="location.href='categories/edit'">編集する</button>
+       </section>     
+       <!-- チャート領域のコンテナ -->
+       <div id="learningChart">
+         <canvas id="myBarChart"></canvas>
+       </div>
+     </div>
+    </div>   
   </main>
+    
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+ <script type="text/javascript" th:inline="javascript">
+  // チャートエリア（目盛り部分）の四方を黒い枠線で囲むプラグイン
+  Chart.pluginService.register({
+    afterDraw: function (chart) {
+      if (chart.id === myBarChart.id) {
+        var ctx = chart.chart.ctx;
+        var xAxis = chart.scales['x-axis-0'];
+        var yAxis = chart.scales['y-axis-0'];
+        
+        ctx.save();
+        ctx.strokeStyle = '#000000'; // 枠線の色（黒）
+        ctx.lineWidth = 0.5;           // 線の太さ
+        // 目盛り領域の四隅（左上から右下まで）を囲む四角形を描画
+        ctx.strokeRect(xAxis.left, yAxis.top, xAxis.width, yAxis.height);
+        ctx.restore();
+      }
+    }
+  });
+  // コントローラーから渡された label と data を受け取る
+  var label = /*[[${label}]]*/ ["先々月", "先月", "今月"];
+  var backend = /*[[${backendData}]]*/ [0, 0, 0];
+  var frontend = /*[[${frontendData}]]*/ [0, 0, 0];
+  var infra = /*[[${infraData}]]*/ [0, 0, 0];
+
+  // 全データから最大値を取得して100分を超えるか判定
+  var allDataValues = backend.concat(frontend, infra);
+  var maxStudyTime = Math.max.apply(null, allDataValues.concat([0]));
+  var hasOver100 = maxStudyTime > 100;
+  
+  var ctx = document.getElementById("myBarChart");
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+     labels: label,
+      datasets: [
+        {
+          label: 'バックエンド',
+          data: backend,
+          backgroundColor: "#F8C8DC", 
+        },{
+          label: 'フロントエンド',
+          data: frontend,
+          backgroundColor: "#FFD75E", 
+        },{
+          label: 'インフラ',
+          data: infra,
+          backgroundColor: "#FFE4B5", 
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'chart.js Bar chart'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: hasOver100 ? undefined : 100, // 100分超えなければ上限100
+            max: hasOver100 ? undefined : 100,
+            beginAtZero: true,
+            stepSize: hasOver100 ? 50 : 10, // 100分以下なら10分おき、超えるなら50分おき
+          },
+          gridLines: {
+            drawBorder: true // 右端を含めた外枠線を表示
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            drawBorder: true // 右端の境界線を表示
+          }
+        }]
+      },
+    }
+  });
+</script>
 
   <!-- フッター -->
   <footer class="footer">   
