@@ -43,8 +43,9 @@ public interface CategoryMapper {
     @Select("SELECT SUM(study_time) FROM learning_data " +
                 "WHERE user_id = #{userId} " +
                 "AND category_id = #{categoryId} " +
-                "AND study_month LIKE CONCAT(#{studyMonth}, '%')")
+                "AND study_month = #{studyMonth}")
      Integer findTotalByMonth(@Param("userId") Long userId, 
                                 @Param("categoryId") Long categoryId, 
-                                @Param("studyMonth") String studyMonth);
+                                @Param("studyMonth") String studyMonth); 
+    
 }
