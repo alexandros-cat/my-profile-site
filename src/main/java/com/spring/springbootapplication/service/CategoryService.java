@@ -17,13 +17,13 @@ public class CategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
   
-  public List<LearningData> findAllLearning_data() {
-        return categoryMapper.findAllLearning_data();
+  public List<LearningData> findAllLearning_data(Long userId) {
+        return categoryMapper.findAllLearning_data(userId);
     }  
     
     // 学習する月を集計する処理
-    public List<MonthlyStudyDto> totalMonthlyDate(){
-      return categoryMapper.findMonthlySummary();
+    public List<MonthlyStudyDto> totalMonthlyDate(Long userId){
+      return categoryMapper.findMonthlySummary(userId);
     }
 
     // 項目を追加する処理
@@ -42,8 +42,8 @@ public class CategoryService {
     }
 
      // 学習時間を削除する処理   
-    public void deleteStudyTime(LearningData learning_data){
-     categoryMapper.delete(learning_data);
+    public void deleteStudyTime(Long id, Long userId){
+      categoryMapper.delete(id, userId);
 
     }
 

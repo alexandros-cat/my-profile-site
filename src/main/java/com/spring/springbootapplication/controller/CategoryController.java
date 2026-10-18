@@ -31,13 +31,17 @@ public class CategoryController {
 
     // --- 一覧・編集画面表示（月ごとの絞り込み対応） ---
     @GetMapping("/edit")
-    public String editCategory(@RequestParam(value = "month", required = false) String month, Model model) {
-
+    public String editCategory(@RequestParam(value = "month", required = false) String month, Model model, @AuthenticationPrincipal LoginUser loginUser) {
+    
         if (month == null || month.isEmpty()) {
             month = String.valueOf(java.time.LocalDate.now().getMonthValue());
         }
 
-        List<LearningData> allLearningData = categoryService.findAllLearning_data();
+        // ログイン中のユーザーIDを取得
+        Long userId = (loginUser != null && loginUser.getUser() != null) ? loginUser.getUser().getId().longValue() : 0L;
+
+        // ログインユーザーのデータのみを取得
+        List<LearningData> allLearningData = categoryService.findAllLearning_data(userId);
 
         List<LearningData> backendList = new ArrayList<>();
         List<LearningData> frontendList = new ArrayList<>();
@@ -124,7 +128,7 @@ public class CategoryController {
 
         // フォームの入力エラーがない場合のみ、重複チェックを行う
         if (!result.hasErrors()) {
-            List<LearningData> allData = categoryService.findAllLearning_data();
+            List<LearningData> allData = categoryService.findAllLearning_data((long) userId);
             if (allData != null) {
                 for (LearningData data : allData) {
                     if (data.getUserId() == userId &&
@@ -218,13 +222,14 @@ public class CategoryController {
     public String studyTimeDelete(
         CategoryRequest categoryRequest,
         Model model,
-        RedirectAttributes redirectAttributes ) {
+        RedirectAttributes redirectAttributes,
+        @AuthenticationPrincipal LoginUser loginUser) {
     	
-    	//ユーザーを削除
-        LearningData learningData = new LearningData();
-        learningData.setId(categoryRequest.getId());
-        learningData.setStudyTime(categoryRequest.getStudy_time());
-    	categoryService.deleteStudyTime(learningData);
+        // ログイン中のユーザーIDを取得
+        Long userId = (loginUser != null && loginUser.getUser() != null) ? loginUser.getUser().getId().longValue() : 0L;
+
+        // ユーザーIDとIDを指定して安全に削除
+        categoryService.deleteStudyTime(categoryRequest.getId(), userId);
     	
         // リダイレクト先にも「何月か」を維持して戻す
         String month = categoryRequest.getMonth();
