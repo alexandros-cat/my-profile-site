@@ -193,13 +193,17 @@ public class CategoryController {
     public String studyTimeUpdate(
         @ModelAttribute CategoryRequest categoryRequest,
         RedirectAttributes redirectAttributes,
-        Model model) {
+        Model model,
+        @AuthenticationPrincipal LoginUser loginUser) {
 
+        // ログイン中のユーザーIDを取得
+        Long userId = (loginUser != null && loginUser.getUser() != null) ? loginUser.getUser().getId().longValue() : 0L;
 
         // 学習時間の更新処理
         LearningData learningData = new LearningData();
         learningData.setId(categoryRequest.getId());
         learningData.setStudyTime(categoryRequest.getStudy_time());
+        learningData.setUserId(userId.intValue()); // ユーザーIDをセットして安全に更新
         categoryService.updateStudyTime(learningData);
 
         // リダイレクト先にも「何月か」を維持して戻す

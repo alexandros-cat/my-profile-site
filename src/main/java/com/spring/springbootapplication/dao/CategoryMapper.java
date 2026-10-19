@@ -34,7 +34,8 @@ public interface CategoryMapper {
     // 学習時間を更新する処理
     @Update("UPDATE learning_data SET study_time = #{studyTime} WHERE id = #{id} AND user_id = #{userId}")
     void update(LearningData learning_data);
-
+    
+    
     // 学習データを削除する処理
     @Delete("DELETE FROM learning_data WHERE id = #{id} AND user_id = #{userId}")
     void delete(@Param("id") Long id, @Param("userId") Long userId);
